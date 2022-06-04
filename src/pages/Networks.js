@@ -38,6 +38,7 @@ import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashbo
 // import data from '../_mock/user';
 import { useNetworksQuery } from '../api/apiSlice';
 import NetworkForm from '../components/forms/NetworkForm';
+import GenerateGenesisBlockModal from '../components/modals/GenerateGenesisModal';
 
 // ----------------------------------------------------------------------
 
@@ -87,9 +88,9 @@ export default function Networks() {
     // Get Data
     const { data, isLoading } = useNetworksQuery();
 
-    console.log(data)
-
     const [newModal, setNewModal] = useState(false)
+    const [genesisModal, setGenesisModal] = useState(false)
+    const [selectedNetwork, setSelectedNetwork] = useState({})
 
     const [page, setPage] = useState(0);
 
@@ -226,12 +227,16 @@ export default function Networks() {
                                                 <TableCell align="right">
                                                     {/* <UserMoreMenu /> */}
                                                     <Tooltip title="Generate Genesis Block" placement="top">
-                                                        <IconButton aria-label="genesis-block" color='success'>
+                                                        <IconButton aria-label="genesis-block" color='success' onClick={() => {
+                                                            setGenesisModal(true)
+                                                            setSelectedNetwork(row)
+
+                                                        }}>
                                                             <Iconify icon="clarity:block-line" />
                                                         </IconButton>
                                                     </Tooltip>
-                                                    <Tooltip title="Nodes" placement="top">
-                                                        <IconButton aria-label="nodes" color='primary'>
+                                                    <Tooltip title="Details" placement="top">
+                                                        <IconButton aria-label="details" color='primary' component={RouterLink} to={`/dashboard/networks/${row.id}`}>
                                                             <Iconify icon="majesticons:checkbox-list-detail" />
                                                         </IconButton>
                                                     </Tooltip>
@@ -297,6 +302,9 @@ export default function Networks() {
                     <NetworkForm />
                 </DialogContent>
             </Dialog>
+
+            {/* Generate Genesis Block Modal */}
+            <GenerateGenesisBlockModal networkId={selectedNetwork.id} show={genesisModal} handleModal={() => setGenesisModal(prev => !prev)} />
         </Page>
     );
 }

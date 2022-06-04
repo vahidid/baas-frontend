@@ -10,6 +10,10 @@ export const apiSlice = createApi({
             query: () => ({ url: '/networks' }),
             providesTags: ['Network'],
         }),
+        singleNetwork: builder.query({
+            query: (networkId) => ({ url: `/networks/${networkId}` }),
+        }),
+
         createNewNetwork: builder.mutation({
             query: (network) => ({
                 url: 'networks',
@@ -21,6 +25,38 @@ export const apiSlice = createApi({
             }),
             transformResponse: (response) => response,
             invalidatesTags: ['Network'],
+        }),
+
+        generateGenesis: builder.mutation({
+            query: (data) => ({
+                url: `networks/genesis-block/${data.networkId}`,
+                method: 'POST',
+                body: data
+            }),
+            transformResponse: (response) => response,
+            invalidatesTags: ['Network'],
+        }),
+
+        getNodesByNetwork: builder.query({
+            query: (networkId) => ({ url: `/nodes/byNetwork/${networkId}` }),
+            providesTags: ['Node'],
+        }),
+
+        runNode: builder.mutation({
+            query: (nodeId) => ({
+                url: `nodes/${nodeId}/run`,
+                method: 'POST',
+            }),
+            transformResponse: (response) => response,
+            invalidatesTags: ['Node'],
+        }),
+        killNode: builder.mutation({
+            query: (nodeId) => ({
+                url: `nodes/${nodeId}/kill`,
+                method: 'POST',
+            }),
+            transformResponse: (response) => response,
+            invalidatesTags: ['Node'],
         }),
 
 
@@ -42,4 +78,15 @@ export const apiSlice = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useNetworksQuery, useCreateNewNetworkMutation, useRegisterMutation } = apiSlice
+export const {
+    useNetworksQuery,
+    useCreateNewNetworkMutation,
+    useSingleNetworkQuery,
+    useGenerateGenesisMutation,
+
+    useGetNodesByNetworkQuery,
+    useRunNodeMutation,
+    useKillNodeMutation,
+
+    useRegisterMutation,
+} = apiSlice

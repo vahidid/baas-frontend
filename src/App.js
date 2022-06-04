@@ -3,6 +3,8 @@ import { ToastContainer } from 'material-react-toastify';
 import Router from './routes';
 // theme
 import ThemeProvider from './theme';
+import 'material-react-toastify/dist/ReactToastify.css';
+
 // components
 import ScrollToTop from './components/ScrollToTop';
 import { BaseOptionChartStyle } from './components/chart/BaseOptionChart';

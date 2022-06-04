@@ -11,6 +11,7 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
 import Networks from './pages/Networks';
+import NetworkDetails from './pages/NetworkDetails';
 
 // ----------------------------------------------------------------------
 
@@ -23,6 +24,7 @@ export default function Router() {
         { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'networks', element: <Networks /> },
+        { path: 'networks/:id', element: <NetworkDetails /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
       ],

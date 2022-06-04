@@ -52,7 +52,7 @@ export default function NetworkForm() {
     return (
         <FormikProvider value={formik}>
             {
-                nodesResponse.nodes?.length === 0 && <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
+                !nodesResponse.nodes && <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                     <Stack spacing={3} sx={{ mt: 2 }}>
                         <Stack direction={{ xs: 'column', sm: 'row' }} flexDirection="column" spacing={2}>
                             <TextField
