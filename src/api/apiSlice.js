@@ -59,6 +59,11 @@ export const apiSlice = createApi({
             invalidatesTags: ['Node'],
         }),
 
+        getNodeByNodeId: builder.query({
+            query: (nodeId) => ({ url: `/nodes/${nodeId}` }),
+            providesTags: ['Node'],
+        }),
+
 
 
 
@@ -85,6 +90,7 @@ export const {
     useGenerateGenesisMutation,
 
     useGetNodesByNetworkQuery,
+    useGetNodeByNodeIdQuery,
     useRunNodeMutation,
     useKillNodeMutation,
 

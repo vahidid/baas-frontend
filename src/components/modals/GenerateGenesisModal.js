@@ -44,6 +44,7 @@ export default function GenerateGenesisBlockModal({ networkId, show, handleModal
         skip: !networkId,
     });
 
+
     const handleChange = (event) => {
         const {
             target: { value },
@@ -98,7 +99,7 @@ export default function GenerateGenesisBlockModal({ networkId, show, handleModal
                                 renderValue={(selected) => selected.map((value) => value.node_name).join(', ')}
                                 MenuProps={MenuProps}
                             >
-                                {data?.nodes?.map((node) => (
+                                {data?.network.nodes?.map((node) => (
                                     <MenuItem key={node.node_id} value={node}>
                                         <Checkbox checked={selectedNodes.indexOf(node) > -1} />
                                         <ListItemText primary={node.node_name} />

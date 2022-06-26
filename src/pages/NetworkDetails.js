@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // material
 import {
 
@@ -21,7 +21,7 @@ import {
     CircularProgress,
 
 } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useParams, Link as RouteLink } from 'react-router-dom';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import * as beautify from 'js-beautify';
@@ -87,6 +87,8 @@ export default function NetworkDetails() {
 
         toast.error(`Node ${nodeId} is killing`);
     }
+
+
 
     return (
         <Page title="Networks">
@@ -178,11 +180,18 @@ export default function NetworkDetails() {
                                                             <IconButton aria-label="run" color='success' onClick={() => handleRunNode(node_id)}>
                                                                 <Iconify icon="fa6-solid:play" />
                                                             </IconButton>
-                                                        </Tooltip> : <Tooltip title="Kill" placement="top">
-                                                            <IconButton aria-label="kill" color='error' onClick={() => handleKillNode(node_id)}>
-                                                                <Iconify icon="fluent:record-stop-12-regular" />
-                                                            </IconButton>
-                                                        </Tooltip>
+                                                        </Tooltip> : <Stack direction={{ sm: 'row', xs: 'column' }}>
+                                                            <Tooltip title="Kill" placement="top">
+                                                                <IconButton aria-label="kill" color='error' onClick={() => handleKillNode(node_id)}>
+                                                                    <Iconify icon="fluent:record-stop-12-regular" />
+                                                                </IconButton>
+                                                            </Tooltip>
+                                                            <Tooltip title="Logs" placement="top">
+                                                                <IconButton aria-label="logs" color='primary' component={RouteLink} to={`/dashboard/nodes/${node_id}`}>
+                                                                    <Iconify icon="ep:document" />
+                                                                </IconButton>
+                                                            </Tooltip>
+                                                        </Stack>
                                                     }
 
 

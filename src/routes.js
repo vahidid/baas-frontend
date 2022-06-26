@@ -12,6 +12,8 @@ import Products from './pages/Products';
 import DashboardApp from './pages/DashboardApp';
 import Networks from './pages/Networks';
 import NetworkDetails from './pages/NetworkDetails';
+import NodeLogs from './pages/NodeLogs';
+import Laboratory from './pages/Labratory';
 
 // ----------------------------------------------------------------------
 
@@ -25,6 +27,10 @@ export default function Router() {
         { path: 'user', element: <User /> },
         { path: 'networks', element: <Networks /> },
         { path: 'networks/:id', element: <NetworkDetails /> },
+        { path: 'nodes/:nodeId', element: <NodeLogs /> },
+        { path: 'laboratory', element: <Laboratory /> },
+
+
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
       ],

@@ -17,6 +17,11 @@ const navConfig = [
     icon: getIcon('carbon:network-4'),
   },
   {
+    title: 'Laboratory',
+    path: '/dashboard/laboratory',
+    icon: getIcon('fontisto:laboratory'),
+  },
+  {
     title: 'user',
     path: '/dashboard/user',
     icon: getIcon('eva:people-fill'),
